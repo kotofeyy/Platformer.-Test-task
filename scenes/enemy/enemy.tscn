@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://cdysitvx45wcl"]
+
+[ext_resource type="Script" uid="uid://dlll74ywj0rfx" path="res://scenes/enemy/enemy.gd" id="1_40wdo"]
+[ext_resource type="Texture2D" uid="uid://kuplqomjrr8a" path="res://assets/enemy/sprites/Hit-Sheet.png" id="1_a3pup"]
+[ext_resource type="Texture2D" uid="uid://cvgywif17cgwf" path="res://assets/enemy/sprites/Idle-Sheet.png" id="2_40wdo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7iqll"]
+radius = 19.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjssy"]
+atlas = ExtResource("1_a3pup")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl05p"]
+atlas = ExtResource("1_a3pup")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwlon"]
+atlas = ExtResource("1_a3pup")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbhyu"]
+atlas = ExtResource("1_a3pup")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nkto"]
+atlas = ExtResource("2_40wdo")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcfvj"]
+atlas = ExtResource("2_40wdo")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa8r4"]
+atlas = ExtResource("2_40wdo")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15mv3"]
+atlas = ExtResource("2_40wdo")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7iqll"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjssy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gl05p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwlon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbhyu")
+}],
+"loop": 0,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nkto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcfvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa8r4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15mv3")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D2" type="CharacterBody2D" unique_id=1950792838 groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_40wdo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1971859868]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_7iqll")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=120391337]
+sprite_frames = SubResource("SpriteFrames_7iqll")
+animation = &"idle"
+autoplay = "idle"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
