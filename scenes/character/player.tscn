@@ -280,7 +280,7 @@ height = 50.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v514x"]
 height = 54.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1614594466]
+[node name="Player" type="CharacterBody2D" unique_id=1614594466 groups=["Player"]]
 script = ExtResource("1_bnvp8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2077134675]
@@ -292,6 +292,7 @@ frame_progress = 1.0
 [node name="Camera2D" type="Camera2D" parent="." unique_id=586755213]
 zoom = Vector2(1.665, 1.665)
 limit_left = -100
+limit_right = 3200
 limit_bottom = 160
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1658434559]

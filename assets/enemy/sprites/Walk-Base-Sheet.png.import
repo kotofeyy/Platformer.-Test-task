@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bccn47ybhal06"
-path="res://.godot/imported/Tiles.png-1ef62add6c5b35ffebd0b009a0cd6db3.ctex"
+uid="uid://cek3ks35mhcn4"
+path="res://.godot/imported/Walk-Base-Sheet.png-ef5c913ca22e3606468a752d16993cfc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/okrujenie/Tiles.png"
-dest_files=["res://.godot/imported/Tiles.png-1ef62add6c5b35ffebd0b009a0cd6db3.ctex"]
+source_file="res://assets/enemy/sprites/Walk-Base-Sheet.png"
+dest_files=["res://.godot/imported/Walk-Base-Sheet.png-ef5c913ca22e3606468a752d16993cfc.ctex"]
 
 [params]
 

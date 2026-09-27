@@ -2,10 +2,16 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
+@onready var hp_bar: ProgressBar = $"../CanvasLayer/MarginContainer/HPBar"
 
-@export var gravity = 1000.0
-@export var speed := 300.0
-@export var jump_velocity := -300.0
+@export var gravity: float = 1000.0
+@export var speed: float = 300.0
+@export var jump_velocity: float = -300.0
+var HP: float = 100:
+	set(new_value):
+		HP = new_value
+		hp_bar.value = HP
+
 
 enum State {
 	IDLE,
@@ -26,6 +32,7 @@ func _physics_process(delta):
 	
 	if direction:
 		velocity.x = direction * speed
+		attack_area.scale.x = abs(attack_area.scale.x) * sign(direction)
 		animated_sprite_2d.flip_h = direction < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
@@ -104,4 +111,11 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemy"):
 		body.hit()
-		print("body - ", body)
+
+
+func take_damage(damage: int) -> void:
+	HP = clamp(HP - damage, 0, 100)
+
+
+func take_health_points(value: int) -> void:
+	HP = clamp(HP + value, 0, 100)
