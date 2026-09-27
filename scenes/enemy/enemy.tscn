@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://kuplqomjrr8a" path="res://assets/enemy/sprites/Hit-Sheet.png" id="1_a3pup"]
 [ext_resource type="Texture2D" uid="uid://cvgywif17cgwf" path="res://assets/enemy/sprites/Idle-Sheet.png" id="2_40wdo"]
 [ext_resource type="Texture2D" uid="uid://cek3ks35mhcn4" path="res://assets/enemy/sprites/Walk-Base-Sheet.png" id="4_tjssy"]
+[ext_resource type="AudioStream" uid="uid://br2nsxcq1b10m" path="res://sounds/hurt.wav" id="5_gl05p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7iqll"]
 radius = 19.0
@@ -146,6 +147,10 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectedArea" unique_id=147385749]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_v514x")
+
+[node name="HurtAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=676071953]
+stream = ExtResource("5_gl05p")
+volume_db = -10.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="DetectedArea" to="." method="_on_detected_area_body_entered"]

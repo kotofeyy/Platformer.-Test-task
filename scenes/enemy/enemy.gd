@@ -1,5 +1,6 @@
 extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hurt_audio_stream_player: AudioStreamPlayer = $HurtAudioStreamPlayer
 
 @export var is_patrolling: bool = false
 @export var speed: float = 20.0
@@ -24,6 +25,7 @@ func _physics_process(delta: float) -> void:
 
 func hit() -> void:
 	animated_sprite_2d.play("hit")
+	hurt_audio_stream_player.play()
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:

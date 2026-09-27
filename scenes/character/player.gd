@@ -3,15 +3,18 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
 @onready var hp_bar: ProgressBar = $"../CanvasLayer/MarginContainer/HPBar"
+@onready var jump_audio_stream_player: AudioStreamPlayer = $JumpAudioStreamPlayer
+@onready var hurt_audio_stream_player: AudioStreamPlayer = $HurtAudioStreamPlayer
+@onready var power_up_audio_stream_player: AudioStreamPlayer = $PowerUpAudioStreamPlayer
 
 @export var gravity: float = 1000.0
 @export var speed: float = 300.0
 @export var jump_velocity: float = -300.0
+
 var HP: float = 100:
 	set(new_value):
 		HP = new_value
 		hp_bar.value = HP
-
 
 enum State {
 	IDLE,
@@ -65,6 +68,7 @@ func change_state(new_state: State):
 
 		State.JUMP:
 			animated_sprite_2d.play("jump")
+			jump_audio_stream_player.play()
 
 		State.ATTACK:
 			animated_sprite_2d.play("attack")
@@ -115,7 +119,9 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 
 func take_damage(damage: int) -> void:
 	HP = clamp(HP - damage, 0, 100)
+	hurt_audio_stream_player.play()
 
 
 func take_health_points(value: int) -> void:
 	HP = clamp(HP + value, 0, 100)
+	power_up_audio_stream_player.play()
